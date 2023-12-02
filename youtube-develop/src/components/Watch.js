@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams, useSearchParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 import { closeMenu } from "./appSlice";
 import { Mock_Video_Data } from "./Constants";
+import CommentContainer from "./CommentContainer";
 
 const Watch = () => {
   const [searchParams] = useSearchParams();
@@ -17,10 +18,18 @@ const Watch = () => {
     dispatch(closeMenu());
   }, []);
   return (
-    <div className="p-5">
-      
+    <div className="p-5 flex flex-col">
       <div className="">
-        <iframe width="1200" height="600" src={videoData?.videoUrl} title={videoData?.title} allowFullScreen></iframe>
+        <iframe
+          width="1200"
+          height="400"
+          src={videoData?.videoUrl}
+          title={videoData?.title}
+          allowFullScreen
+        ></iframe>
+      </div>
+      <div className="m-5">
+        <CommentContainer />
       </div>
     </div>
   );
